@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: RAWLAYER
+    schema: RAWLAYER
+    tables:
+      - name: CUSTOMER
+      - name: ITEM
+    
