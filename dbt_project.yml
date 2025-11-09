@@ -49,3 +49,6 @@ models:
     dynamic:
       +schema: DYNAMIC
       +materialized: table
+    DBT_TEST:
+      +schema: DBT_TEST
+      +materialized: table

@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: stgcustomer
+    description: "Staging model for customer data"
+    columns:
+      - name: CUSTOMER_ID
+        tests:
+          - not_null
+          - unique
+      - name: STATUS
+        tests:
+          - accepted_values:
+              values: ['ACTIVE', 'INACTIVE']
+      - name: CITY
+        tests:
+          - not_null
+
+  - name: stgorder
+    description: "Staging model for order data"
+    columns:
+      - name: ORDER_ID
+        tests:
+          - unique
+          - not_null
+      - name: ORDER_STATUS
+        tests:
+          - accepted_values:
+              values: ['Delivered', 'Cancelled', 'Pending']
+      - name: CUSTOMER_ID
+        tests:
+          - relationships:
+              to: ref('stgcustomer')
+              field: CUSTOMER_ID
+
+  - name: fct_customer_orders
+    description: "Joined fact model of customers and orders"
+    columns:
+      - name: ORDER_ID
+        tests:
+          - not_null
+      - name: CUSTOMER_ID
+        tests:
+          - not_null
