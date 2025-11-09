@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: DBTTESTSOURCE
+    database: DBT_TEST_DEMO
+    schema: RAWLAYER
+
+    tables:
+      - name: CUSTOMER
+        description: "Customer master data"
+        loaded_at_field: CREATED_AT
+        freshness:
+          warn_after: {count: 1, period: day}
+          error_after: {count: 2, period: day}
+
+      - name: ORDERS
+        description: "Orders transaction table"
+        loaded_at_field: ORDER_DATE
+        freshness:
+          warn_after: {count: 1, period: day}
+          error_after: {count: 2, period: day}
