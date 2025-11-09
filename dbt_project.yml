@@ -42,3 +42,10 @@ models:
       +materialized: table
     prepzee:
       +materialized: view
+    staging:
+      +schema: STAGING
+      +transient: false
+      +materialized: table
+    dynamic:
+      +schema: DYNAMIC
+      +materialized: table
